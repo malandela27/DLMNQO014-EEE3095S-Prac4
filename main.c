@@ -51,7 +51,6 @@ TIM_HandleTypeDef htim3;
 DMA_HandleTypeDef hdma_tim2_ch1;
 /* USER CODE BEGIN PV */
 // TODO: Add code for global variables, including LUTs
-// Global variable to track the current waveform type
 
 enum WaveformType {
 SINE,
@@ -338,8 +337,7 @@ if (interrupt_time - last_interrupt_time > 200)
 {
 static enum WaveformType currentWaveform = SINE;
 }
-// TODO: Disable DMA transfer and abort IT, then start DMA in IT mode with 
-new LUT and re-enable transfer
+// TODO: Disable DMA transfer and abort IT, then start DMA in IT mode with new LUT and re-enable transfer
 __HAL_TIM_DISABLE_DMA(&htim2, TIM_DMA_CC1);
 HAL_DMA_Abort_IT(&hdma_tim2_ch1);
 // HINT: Consider using C's "switch" function to handle LUT changes
